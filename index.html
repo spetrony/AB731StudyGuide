@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AB-731 Study Guide — Microsoft Certified: AI Transformation Leader</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f8;
+    --text: #1b2230;
+    --muted: #5c6a7e;
+    --primary: #0062ad;
+    --primary-2: #004a85;
+    --accent: #7a4bff;
+    --accent-2: #00b7c3;
+    --good: #107c10;
+    --warn: #b45309;
+    --bad: #c42b1c;
+    --border: #dde4ee;
+    --shadow: 0 6px 24px rgba(13, 38, 76, 0.07);
+    --radius: 14px;
+  }
+  [data-theme="dark"] {
+    --bg: #0f141c;
+    --surface: #161d27;
+    --surface-2: #1c2531;
+    --text: #e7eefb;
+    --muted: #9aa7b8;
+    --primary: #4cb1ff;
+    --primary-2: #2a90dd;
+    --accent: #b89bff;
+    --accent-2: #5ae0e6;
+    --good: #4ac776;
+    --warn: #ffb562;
+    --bad: #ff7a70;
+    --border: #2a3240;
+    --shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    padding: 40px 24px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero h1 { margin: 0 0 6px; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; }
+  .hero p.subtitle { margin: 0; opacity: 0.95; font-size: 1.05rem; }
+  .hero .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .theme-toggle {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.28); }
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  nav.tabs button {
+    background: transparent;
+    border: none;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav.tabs button:hover { color: var(--text); }
+  nav.tabs button.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+  main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; }
+  section.view { display: none; animation: fadeIn 0.3s ease-out; }
+  section.view.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  h2.section-title {
+    font-size: 1.6rem;
+    margin: 0 0 6px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .section-sub { color: var(--muted); margin: 0 0 24px; font-size: 0.95rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .card h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+    color: var(--primary);
+  }
+  .card p { margin: 0.5em 0; }
+  .card strong { color: var(--text); }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .stat-card {
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-card .num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+  }
+  .stat-card .lab { font-size: 0.9rem; color: var(--muted); }
+  details.accordion {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  details.accordion[open] { box-shadow: var(--shadow); }
+  details.accordion summary {
+    padding: 16px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    user-select: none;
+  }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after {
+    content: "+";
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 300;
+    transition: transform 0.2s;
+  }
+  details.accordion[open] summary::after { transform: rotate(45deg); }
+  details.accordion .content {
+    padding: 4px 22px 22px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  details.accordion .content h4 {
+    margin: 18px 0 8px;
+    color: var(--primary);
+    font-size: 1rem;
+  }
+  details.accordion .content ul { padding-left: 22px; }
+  details.accordion .content li { margin: 6px 0; }
+  .keytable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 0.92rem;
+  }
+  .keytable th, .keytable td {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .keytable th { background: var(--surface-2); font-weight: 600; }
+  .callout {
+    background: linear-gradient(90deg, rgba(122,75,255,0.08), rgba(0,183,195,0.08));
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 14px 0;
+  }
+  .callout.warn { background: rgba(180, 83, 9, 0.08); border-left-color: var(--warn); }
+  .callout.tip { background: rgba(16, 124, 16, 0.08); border-left-color: var(--good); }
+  .chip {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--muted);
+    margin-right: 6px;
+    border: 1px solid var(--border);
+  }
+  .chip.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  /* Flashcards */
+  .flash-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; }
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: background 0.15s, transform 0.05s;
+  }
+  .btn:hover { background: var(--primary-2); }
+  .btn:active { transform: translateY(1px); }
+  .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+  .btn.secondary:hover { background: var(--border); }
+  .btn.accent { background: var(--accent); }
+  select.filter {
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  .flash-container {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 560px;
+    height: 300px;
+    margin: 24px auto;
+  }
+  .flash-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+  }
+  .flash-card.flipped { transform: rotateY(180deg); }
+  .flash-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .flash-face.front {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+  }
+  .flash-face.back {
+    background: var(--surface);
+    color: var(--text);
+    transform: rotateY(180deg);
+    overflow-y: auto;
+  }
+  .flash-face h3 { margin: 0 0 10px; font-size: 1.4rem; }
+  .flash-face p { margin: 0; font-size: 1rem; line-height: 1.55; }
+  .flash-meta {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  .flash-nav { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+
+  /* Quiz */
+  .quiz-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .progress-bar {
+    background: var(--surface-2);
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+    flex: 1;
+    min-width: 200px;
+  }
+  .progress-bar-fill {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    height: 100%;
+    transition: width 0.3s;
+  }
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .question-card .qnum { color: var(--muted); font-size: 0.85rem; margin-bottom: 4px; }
+  .question-card h3 { margin: 0 0 4px; font-size: 1.1rem; line-height: 1.4; }
+  .question-card .qtype { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;}
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .option {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--surface);
+  }
+  .option:hover { border-color: var(--primary); background: var(--surface-2); }
+  .option.selected { border-color: var(--primary); background: rgba(0, 98, 173, 0.08); }
+  .option.correct { border-color: var(--good); background: rgba(16, 124, 16, 0.12); }
+  .option.incorrect { border-color: var(--bad); background: rgba(196, 43, 28, 0.08); }
+  .option .marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .option.selected .marker { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .option.correct .marker { background: var(--good); color: #fff; border-color: var(--good); }
+  .option.incorrect .marker { background: var(--bad); color: #fff; border-color: var(--bad); }
+  .explanation {
+    background: var(--surface-2);
+    border-left: 4px solid var(--primary);
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-top: 14px;
+    font-size: 0.95rem;
+  }
+  .explanation.correct { border-left-color: var(--good); }
+  .explanation.incorrect { border-left-color: var(--bad); }
+  .quiz-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
+  .quiz-result {
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .score-circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: conic-gradient(var(--primary) 0%, var(--surface-2) 0%);
+    position: relative;
+  }
+  .score-circle::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    background: var(--surface);
+    border-radius: 50%;
+  }
+  .score-circle .inner { position: relative; z-index: 1; }
+  .score-circle .pct { font-size: 2.2rem; font-weight: 700; color: var(--primary); }
+  .score-circle .lab { font-size: 0.85rem; color: var(--muted); }
+  .domain-breakdown {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dbd-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+
+  /* Glossary */
+  .search-box {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    font-size: 1rem;
+    background: var(--surface);
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  .search-box:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+  .glossary-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-item .term { font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .glossary-item .def { color: var(--text); margin: 0; font-size: 0.95rem; }
+
+  /* Overview cards */
+  .overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .domain-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .domain-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .domain-card.d2 { border-left-color: var(--accent); }
+  .domain-card.d3 { border-left-color: var(--accent-2); }
+  .domain-card .weight { font-size: 0.8rem; color: var(--muted); }
+  .domain-card h3 { margin: 6px 0; font-size: 1.1rem; }
+  .domain-card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+  footer {
+    max-width: 1200px;
+    margin: 40px auto 20px;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    header.hero { padding: 30px 16px 24px; }
+    main { padding: 18px 14px 60px; }
+    .card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark mode</button>
+  <div class="hero-inner">
+    <h1>AB-731 Study Guide</h1>
+    <p class="subtitle">Microsoft Certified: AI Transformation Leader — Interactive study companion</p>
+    <div class="badges">
+      <span class="badge">60 questions</span>
+      <span class="badge">45 minutes</span>
+      <span class="badge">700 / 1000 to pass</span>
+      <span class="badge">$99</span>
+      <span class="badge">No coding required</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab-btn active" data-view="overview">Overview</button>
+  <button class="tab-btn" data-view="domain1">Domain 1 · Business Value</button>
+  <button class="tab-btn" data-view="domain2">Domain 2 · Microsoft AI</button>
+  <button class="tab-btn" data-view="domain3">Domain 3 · Adoption</button>
+  <button class="tab-btn" data-view="flashcards">Flashcards</button>
+  <button class="tab-btn" data-view="quiz">Practice Quiz</button>
+  <button class="tab-btn" data-view="glossary">Glossary</button>
+</nav>
+
+<main>
+
+<!-- ========== OVERVIEW ========== -->
+<section class="view active" id="view-overview">
+  <h2 class="section-title">Exam Overview</h2>
+  <p class="section-sub">AB-731 is a business leadership certification — no coding required. It proves you can lead AI transformation with Microsoft technology.</p>
+
+  <div class="grid-3">
+    <div class="stat-card"><span class="num">60</span><span class="lab">Questions</span></div>
+    <div class="stat-card"><span class="num">45 min</span><span class="lab">Time limit</span></div>
+    <div class="stat-card"><span class="num">700</span><span class="lab">Pass (of 1000)</span></div>
+    <div class="stat-card"><span class="num">$99</span><span class="lab">Exam cost</span></div>
+  </div>
+
+  <h3 style="margin-top:30px;">The Three Domains</h3>
+  <div class="overview-cards">
+    <div class="domain-card" onclick="setView('domain1')">
+      <div class="weight">35–40% · largest</div>
+      <h3>Domain 1 · Business Value of Generative AI</h3>
+      <p>Foundational AI concepts, model types, cost drivers (tokens, ROI), challenges (fabrication, bias), prompt engineering, grounding, RAG, ML lifecycle, and AI security.</p>
+    </div>
+    <div class="domain-card d2" onclick="setView('domain2')">
+      <div class="weight">35–40%</div>
+      <h3>Domain 2 · Microsoft AI Apps &amp; Services</h3>
+      <p>Microsoft 365 Copilot, Copilot Chat, Copilot Studio, Microsoft Graph, Researcher &amp; Analyst agents, Microsoft Foundry, Foundry Tools, build/buy/extend.</p>
+    </div>
+    <div class="domain-card d3" onclick="setView('domain3')">
+      <div class="weight">20–25%</div>
+      <h3>Domain 3 · Implementation &amp; Adoption</h3>
+      <p>Responsible AI principles, governance &amp; AI councils, adoption teams, AI champions, barriers to adoption, Copilot and Foundry license types.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>How to use this guide</h3>
+    <ol>
+      <li><strong>Start with Overview</strong> — skim the three domains so you know the terrain.</li>
+      <li><strong>Work each domain</strong> — open the accordion sections, read the concepts, study the tables.</li>
+      <li><strong>Drill with flashcards</strong> — filter by domain, flip, cycle until you can answer cold.</li>
+      <li><strong>Take the practice quiz</strong> — 41 questions simulating multiple-choice and multi-select formats. Aim for 80%+ before sitting the real exam.</li>
+      <li><strong>Use the glossary</strong> — quick reference for every key term.</li>
+    </ol>
+    <div class="callout tip">
+      <strong>Pro tip:</strong> The real exam is 60 questions in 45 minutes — that's 45 seconds per question. Practice reading fast and eliminating distractors early.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Official study resources</h3>
+    <ul>
+      <li><strong>Microsoft Learn path</strong> — free self-paced learning aligned to the exam skills.</li>
+      <li><strong>Course AB-731T00-A</strong> — classroom training: "Drive AI transformation in your organization."</li>
+      <li><strong>Official study guide on Microsoft Learn</strong> — the skills-measured outline reproduced in this app.</li>
+      <li>Third-party practice tests: Tutorials Dojo, CertificationPractice.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== DOMAIN 1 ========== -->
+<section class="view" id="view-domain1">
+  <h2 class="section-title">Domain 1 · Identify the Business Value of Generative AI Solutions</h2>
+  <p class="section-sub">35–40% of the exam · the heaviest domain. Focuses on foundational concepts, choosing the right AI solution, cost drivers, challenges, and the mechanics of generative AI.</p>
+
+  <details class="accordion" open>
+    <summary>1.1 Foundational concepts — AI vs. generative AI</summary>
+    <div class="content">
+      <p><strong>AI</strong> is a toolbox of capabilities that help computers perform tasks that once required human judgment — language understanding, image recognition, pattern spotting, recommendations.</p>
+      <p><strong>Generative AI</strong> is a subset of AI that <em>creates content</em> — text, code, images, video. It powers new productivity and creativity scenarios.</p>
+      <h4>The four capability types</h4>
+      <table class="keytable">
+        <tr><th>Type</th><th>What it does</th><th>Examples</th></tr>
+        <tr><td><strong>Descriptive</strong></td><td>Describes what happened</td><td>Search, classification, summarization</td></tr>
+        <tr><td><strong>Predictive</strong></td><td>Anticipates what will happen</td><td>Forecasting, anomaly detection, scoring</td></tr>
+        <tr><td><strong>Prescriptive</strong></td><td>Recommends what to do</td><td>Recommendations, optimization</td></tr>
+        <tr><td><strong>Generative</strong></td><td>Creates new content</td><td>Drafts, images, code, summaries</td></tr>
+      </table>
+      <h4>Data science, ML, deep learning</h4>
+      <ul>
+        <li><strong>Data science</strong> turns data into actionable insight using statistics, engineering, and domain expertise.</li>
+        <li><strong>Machine learning</strong> learns patterns from data to make predictions or classifications.</li>
+        <li><strong>Deep learning</strong> uses layered neural networks to find complex patterns in unstructured data (images, text, audio). Needs lots of data and compute.</li>
+      </ul>
+      <div class="callout"><strong>For business leaders:</strong> the point isn't the algorithm — it's where capabilities deliver outcomes: faster decisions, better customer experience, lower cost to serve.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.2 Selecting the right AI solution for a business need</summary>
+    <div class="content">
+      <p>Start with the business problem, not the technology. Match the capability to the need.</p>
+      <table class="keytable">
+        <tr><th>Business need</th><th>Capability to choose</th></tr>
+        <tr><td>Search and summarize documents</td><td>Descriptive / generative</td></tr>
+        <tr><td>Forecast revenue, predict churn</td><td>Predictive (machine learning)</td></tr>
+        <tr><td>Recommend products or next best action</td><td>Prescriptive</td></tr>
+        <tr><td>Draft policies, marketing copy, emails</td><td>Generative AI</td></tr>
+        <tr><td>Detect fraud, flag anomalies</td><td>Predictive ML</td></tr>
+      </table>
+      <h4>Where generative AI provides business value</h4>
+      <ul>
+        <li><strong>Scalability</strong> — handle huge volumes without proportional headcount.</li>
+        <li><strong>Automation</strong> — eliminate repetitive drafting, summarization, and research work.</li>
+        <li><strong>Productivity</strong> — drafts, summaries, options produced faster.</li>
+        <li><strong>Speed and scale</strong> — AI analyzes large volumes and synthesizes insights in minutes.</li>
+        <li><strong>Innovation</strong> — intelligent search, document understanding, agentic workflows.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.3 AI models — pretrained vs. fine-tuned</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Type</th><th>Definition</th><th>When to use</th></tr>
+        <tr><td><strong>Pretrained model</strong></td><td>Trained on a general, broad dataset; ready to use out of the box.</td><td>General tasks — drafting, summarizing, Q&amp;A on common topics.</td></tr>
+        <tr><td><strong>Fine-tuned model</strong></td><td>Pretrained model further trained on your domain-specific data.</td><td>Specialized vocabulary, unique tone, or task requiring high accuracy on niche topics.</td></tr>
+        <tr><td><strong>Foundation model</strong></td><td>Large pretrained model that can be adapted to many downstream tasks (base for generative AI).</td><td>Creative or reasoning-heavy tasks, broad generation.</td></tr>
+        <tr><td><strong>Small Language Model (SLM)</strong></td><td>Smaller, faster, cheaper model.</td><td>Latency-sensitive or cost-sensitive use cases; on-device or edge.</td></tr>
+        <tr><td><strong>Prebuilt services</strong></td><td>Turnkey task-specific APIs (Vision, Document Intelligence, Language, Search).</td><td>Well-defined, common tasks.</td></tr>
+      </table>
+      <div class="callout tip"><strong>Right-size principle:</strong> not every task needs the largest model. Larger models cost more and are slower — use the smallest capable option.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.4 Cost drivers — tokens, ROI, and usage</summary>
+    <div class="content">
+      <h4>Tokens</h4>
+      <p>A <strong>token</strong> is a chunk of text the model processes (roughly ¾ of a word in English). Both <em>input</em> and <em>output</em> tokens cost money. Generative AI usage is typically billed per 1,000 tokens.</p>
+      <p>Longer prompts, longer context, and longer responses = more tokens = higher cost.</p>
+      <h4>Main cost levers</h4>
+      <ul>
+        <li><strong>Model size</strong> — bigger models cost more per token.</li>
+        <li><strong>Prompt size</strong> — long grounding context inflates input tokens.</li>
+        <li><strong>Response length</strong> — unbounded outputs are expensive.</li>
+        <li><strong>Usage volume</strong> — number of calls per day / user.</li>
+        <li><strong>Fine-tuning and custom deployments</strong> — add training and hosting costs.</li>
+      </ul>
+      <h4>ROI considerations</h4>
+      <p>Measure ROI across productivity (hours saved), quality (error reduction, CSAT), and revenue (faster cycle times, new capabilities). Include the <em>total cost of ownership</em>: licensing, compute, data preparation, governance, training, and change management.</p>
+      <div class="callout warn"><strong>Watch out:</strong> AI workloads scale dynamically — a pilot with a few thousand transactions can grow to millions. Without pricing visibility, budgets spiral.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.5 Challenges — fabrication, reliability, bias</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Challenge</th><th>What it means</th><th>Mitigation</th></tr>
+        <tr><td><strong>Fabrication (hallucination)</strong></td><td>Model produces convincing but incorrect information.</td><td>Grounding, RAG, human review, citations.</td></tr>
+        <tr><td><strong>Reliability</strong></td><td>Output varies; model fails in edge cases.</td><td>Test with representative data, fail safely, set guardrails.</td></tr>
+        <tr><td><strong>Bias</strong></td><td>Unequal treatment of similar cases; reflects dataset bias.</td><td>Diverse datasets, fairness testing, diverse design teams, the Responsible AI Dashboard.</td></tr>
+        <tr><td><strong>Data sensitivity</strong></td><td>Leaking PII or confidential info into model inputs/outputs.</td><td>Data classification, permissions, DLP, grounding on authorized data only.</td></tr>
+        <tr><td><strong>Over-reliance</strong></td><td>Users trust outputs without verification.</td><td>Prompt literacy, disclosures, human-in-the-loop for consequential decisions.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.6 Prompt engineering</summary>
+    <div class="content">
+      <p>A <strong>prompt</strong> is the input that guides a generative AI model. Prompt quality directly controls output quality.</p>
+      <h4>Why prompt engineering matters</h4>
+      <ul>
+        <li>Improves efficiency (fewer revisions).</li>
+        <li>Aligns outputs with business goals.</li>
+        <li>Reduces risk of misinterpretation.</li>
+      </ul>
+      <h4>Core prompt techniques</h4>
+      <ul>
+        <li><strong>Be specific</strong> — state the task, audience, format, and constraints.</li>
+        <li><strong>Provide context</strong> — include relevant background the model needs.</li>
+        <li><strong>Give examples (few-shot)</strong> — show desired output format.</li>
+        <li><strong>Set the persona / role</strong> — "You are a compliance analyst…"</li>
+        <li><strong>Chain of thought</strong> — ask the model to reason step-by-step for complex tasks.</li>
+        <li><strong>Iterate</strong> — refine based on outputs.</li>
+      </ul>
+      <div class="callout"><strong>Two audiences:</strong> business users need <em>prompt literacy</em>; developers use advanced prompt engineering to optimize solutions.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.7 Grounding and RAG</summary>
+    <div class="content">
+      <p><strong>Grounding</strong> connects AI responses to authoritative data sources so outputs are based on verified information instead of model memory alone.</p>
+      <p><strong>Retrieval-Augmented Generation (RAG)</strong> is the pattern: retrieve relevant documents from a knowledge store, then generate an answer using that retrieved context.</p>
+      <h4>Why it matters</h4>
+      <ul>
+        <li><strong>Accuracy</strong> — reduces convincing-but-wrong answers.</li>
+        <li><strong>Compliance</strong> — outputs align with regulations and current policy.</li>
+        <li><strong>Trust</strong> — builds confidence with employees and customers.</li>
+        <li><strong>Freshness</strong> — incorporates real-time or enterprise-specific info that wasn't in the model's training data.</li>
+      </ul>
+      <h4>Grounded vs. ungrounded</h4>
+      <ul>
+        <li><strong>Ungrounded:</strong> "The latest compliance regulation is ISO 27001:2013." — may be outdated.</li>
+        <li><strong>Grounded:</strong> "According to your company's compliance portal, the latest is ISO 27001:2022." — verified from internal source.</li>
+      </ul>
+      <p>Microsoft 365 Copilot is a real-world example: it grounds responses in your files, emails, chats, and calendars via Microsoft Graph.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.8 Data quality, representativeness, and types</summary>
+    <div class="content">
+      <p>AI is only as good as the data behind it.</p>
+      <table class="keytable">
+        <tr><th>Data dimension</th><th>Why it matters</th></tr>
+        <tr><td><strong>Type</strong> (structured, unstructured, semi-structured)</td><td>Different types need different tools — tables vs. documents vs. images.</td></tr>
+        <tr><td><strong>Quality</strong> (accuracy, completeness, freshness)</td><td>Garbage in, garbage out. Poor quality cascades into unreliable outputs.</td></tr>
+        <tr><td><strong>Representativeness</strong></td><td>Training data must reflect the population the model will serve — avoids bias and exclusion.</td></tr>
+        <tr><td><strong>Labeling</strong></td><td>Supervised ML needs accurate labels.</td></tr>
+        <tr><td><strong>Permissions</strong></td><td>Only authorized data should enter prompts — respects least-privilege.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.9 Machine learning — when it adds value and the lifecycle</summary>
+    <div class="content">
+      <h4>When ML adds value</h4>
+      <ul>
+        <li><strong>Predictive analytics</strong> — forecasting sales, demand, risk.</li>
+        <li><strong>Personalization</strong> — customer segmentation, recommendations.</li>
+        <li><strong>Automation</strong> — anomaly detection, fraud detection.</li>
+      </ul>
+      <h4>Gen-AI vs. ML use cases</h4>
+      <table class="keytable">
+        <tr><th>Generative AI use cases</th><th>Machine learning use cases</th></tr>
+        <tr><td>Drafting reports</td><td>Predicting customer churn</td></tr>
+        <tr><td>Creating marketing content</td><td>Personalizing product suggestions</td></tr>
+        <tr><td>Summarizing documents</td><td>Detecting fraud</td></tr>
+      </table>
+      <h4>ML lifecycle (high level)</h4>
+      <ol>
+        <li><strong>Define</strong> the business problem and success metric.</li>
+        <li><strong>Collect &amp; prepare</strong> data.</li>
+        <li><strong>Train</strong> the model.</li>
+        <li><strong>Evaluate</strong> performance against the metric.</li>
+        <li><strong>Deploy</strong> and integrate (inferencing).</li>
+        <li><strong>Monitor</strong> and retrain as data drifts.</li>
+      </ol>
+      <p>Business leaders own goal-setting, resourcing, and evaluation; data scientists and engineers own the build.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>1.10 Secure AI — security considerations for AI systems</summary>
+    <div class="content">
+      <p>Secure AI protects <strong>data, models, and applications</strong> across the AI lifecycle.</p>
+      <h4>Three security layers</h4>
+      <table class="keytable">
+        <tr><th>Layer</th><th>Focus</th></tr>
+        <tr><td><strong>Application security</strong></td><td>Secure code, secure APIs, input validation, prompt injection defenses, rate limiting.</td></tr>
+        <tr><td><strong>Data security</strong></td><td>Classification, encryption at rest and in transit, DLP, least privilege, data residency.</td></tr>
+        <tr><td><strong>Authentication &amp; identity</strong></td><td>Strong identity (Entra ID), MFA, RBAC, conditional access, service-to-service auth.</td></tr>
+      </table>
+      <h4>Key threats to know</h4>
+      <ul>
+        <li><strong>Prompt injection</strong> — malicious instructions hidden in user input or retrieved content.</li>
+        <li><strong>Data exfiltration</strong> — sensitive content appearing in outputs.</li>
+        <li><strong>Model abuse / jailbreak</strong> — users bypassing safety guardrails.</li>
+        <li><strong>Supply-chain risk</strong> — compromised third-party models or plugins.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ========== DOMAIN 2 ========== -->
+<section class="view" id="view-domain2">
+  <h2 class="section-title">Domain 2 · Microsoft's AI Apps &amp; Services</h2>
+  <p class="section-sub">35–40% of the exam. Maps business needs to Microsoft products: Microsoft 365 Copilot, Copilot Studio, Microsoft Graph, Researcher/Analyst, Microsoft Foundry, and Foundry Tools.</p>
+
+  <details class="accordion" open>
+    <summary>2.1 What Microsoft Copilot is — and isn't</summary>
+    <div class="content">
+      <p><strong>Microsoft Copilot</strong> is the umbrella name for AI-powered assistance across Microsoft products — Windows, Edge, GitHub, Microsoft 365. Each experience combines LLMs with relevant context.</p>
+      <p><strong>Microsoft 365 Copilot</strong> is the experience built into Word, Excel, PowerPoint, Outlook, and Teams. It grounds responses in <em>your</em> organizational data via Microsoft Graph — files, emails, chats, calendars — respecting your existing permissions and compliance.</p>
+      <div class="callout"><strong>Three core benefits:</strong> boost productivity, improve decision quality, strengthen governance with enterprise-grade security.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.2 Microsoft 365 Copilot vs. Copilot Chat vs. Copilot Studio</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Product</th><th>What it does</th><th>Best for</th></tr>
+        <tr><td><strong>Microsoft 365 Copilot</strong></td><td>Embedded AI in Word, Excel, PowerPoint, Outlook, Teams. Grounded in org data via Microsoft Graph.</td><td>Knowledge-worker productivity in-app.</td></tr>
+        <tr><td><strong>Microsoft 365 Copilot Chat</strong></td><td>Conversational web &amp; mobile experience delivering context-aware answers grounded in org data.</td><td>Quick research, mobile work, cross-app answers.</td></tr>
+        <tr><td><strong>Microsoft Copilot Studio</strong></td><td>Low-code platform to build custom copilots and extend existing ones. Connects to external data and systems.</td><td>Tailoring AI to unique workflows without heavy development.</td></tr>
+      </table>
+      <h4>Copilot in each Microsoft 365 app</h4>
+      <ul>
+        <li><strong>Word</strong> — draft, rewrite for clarity, adjust tone.</li>
+        <li><strong>Excel</strong> — analyze trends, create visualizations, model scenarios.</li>
+        <li><strong>PowerPoint</strong> — turn ideas and docs into polished decks.</li>
+        <li><strong>Outlook</strong> — summarize threads, draft replies, triage inbox.</li>
+        <li><strong>Teams</strong> — summarize meetings, surface action items, catch up on chats.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.3 Microsoft Graph — the backbone of enterprise context</summary>
+    <div class="content">
+      <p><strong>Microsoft Graph</strong> is the connective layer linking people, documents, conversations, and calendars. It's how Copilot knows which project a document belongs to, who owns it, and what decisions were made in related meetings.</p>
+      <ul>
+        <li><strong>Context-rich answers</strong> — Copilot draws from related files, meetings, and chats — not random content.</li>
+        <li><strong>Security &amp; compliance built-in</strong> — Graph respects identity and permissions.</li>
+        <li><strong>Breaks down silos</strong> — unified, permission-aware view across Microsoft 365.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.4 Researcher and Analyst in Copilot</summary>
+    <div class="content">
+      <p>Researcher and Analyst are specialized agents inside Microsoft 365 Copilot for deeper, multi-step work.</p>
+      <table class="keytable">
+        <tr><th>Agent</th><th>When to use</th><th>Example scenario</th></tr>
+        <tr><td><strong>Researcher</strong></td><td>Complex, multi-step research that combines web knowledge with your organizational data. Produces thorough, cited analyses.</td><td>Building a competitive brief pulling from public sources plus internal notes.</td></tr>
+        <tr><td><strong>Analyst</strong></td><td>Advanced data analysis on your content — running code, building charts, reasoning over spreadsheets and documents.</td><td>Turning a raw CSV into a forecast, variance analysis, or cohort breakdown.</td></tr>
+      </table>
+      <div class="callout tip">Rule of thumb: <strong>Researcher</strong> for <em>what</em> and <em>why</em> (insights from many sources). <strong>Analyst</strong> for <em>how much</em> and <em>what if</em> (quantitative analysis).</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.5 Build, Buy, or Extend — the decision framework</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Option</th><th>When to choose</th><th>Example</th></tr>
+        <tr><td><strong>Buy</strong> (use Microsoft 365 Copilot out of the box)</td><td>Common productivity needs already covered by Copilot.</td><td>Rolling out Copilot to knowledge workers.</td></tr>
+        <tr><td><strong>Extend</strong> (Copilot Studio, plugins, connectors, agents)</td><td>Copilot is close but you need integrations with line-of-business systems or specialized workflows.</td><td>Adding a connector to an ERP so Copilot can answer "what's my inventory of SKU X?".</td></tr>
+        <tr><td><strong>Build</strong> (Microsoft Foundry)</td><td>You need a custom AI application, fine-tuning, a specialized model, or differentiated experience.</td><td>A customer-facing support agent with industry-specific tone and domain knowledge.</td></tr>
+      </table>
+      <p>The <strong>Microsoft 365 Copilot extensibility framework</strong> covers plugins, connectors, agents, and declarative extensions that plug into the existing Copilot experience.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.6 Microsoft Foundry — the unified platform</summary>
+    <div class="content">
+      <p><strong>Microsoft Foundry</strong> is Azure's unified platform-as-a-service for enterprise AI operations, model building, and app development. It consolidates prior Azure AI Studio / Azure AI Foundry into one platform.</p>
+      <h4>What Foundry unifies</h4>
+      <ul>
+        <li><strong>Agents, models, and tools</strong> under a single management grouping.</li>
+        <li><strong>Enterprise-readiness:</strong> tracing, monitoring, evaluations, customizable enterprise setup.</li>
+        <li><strong>Unified RBAC, networking, and policies</strong> under one Azure resource provider.</li>
+      </ul>
+      <h4>Who Foundry is for</h4>
+      <ul>
+        <li><strong>App developers</strong> building AI-powered products.</li>
+        <li><strong>ML engineers and data scientists</strong> fine-tuning models and running evals.</li>
+        <li><strong>IT admins and platform engineers</strong> governing AI resources and enforcing policy.</li>
+      </ul>
+      <h4>Benefits</h4>
+      <ul>
+        <li><strong>Scalability</strong> — production-grade infrastructure; scales from prototype to enterprise.</li>
+        <li><strong>Security &amp; governance</strong> — built-in observability, audit, and RBAC.</li>
+        <li><strong>Flexibility</strong> — thousands of models, prebuilt tools, and catalogs.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.7 Foundry Tools — Azure AI services (Vision, Language, Search, etc.)</summary>
+    <div class="content">
+      <p><strong>Foundry Tools</strong> are prebuilt Azure AI services for common, well-defined tasks. Pick these when you want <em>fast time-to-value</em> with built-in safety and predictable costs.</p>
+      <table class="keytable">
+        <tr><th>Service</th><th>Use case</th></tr>
+        <tr><td><strong>Azure Vision in Foundry Tools</strong></td><td>Image analysis, OCR, object detection, face analysis.</td></tr>
+        <tr><td><strong>Azure AI Language</strong></td><td>Entity recognition, sentiment, summarization, translation-adjacent tasks.</td></tr>
+        <tr><td><strong>Azure AI Document Intelligence</strong></td><td>Extract structured data from forms and documents.</td></tr>
+        <tr><td><strong>Azure AI Search</strong></td><td>Enterprise search and the retrieval backbone for RAG applications.</td></tr>
+        <tr><td><strong>Azure AI Speech</strong></td><td>Transcription, TTS, speech translation.</td></tr>
+        <tr><td><strong>Azure AI Content Safety</strong></td><td>Detect harmful content in text and images — safety layer for gen-AI apps.</td></tr>
+      </table>
+      <div class="callout"><strong>Rule of thumb:</strong> prebuilt Foundry Tools for well-defined tasks · foundation models for generative/reasoning · fine-tuning for specialized accuracy.</div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.8 Matching an AI model to a business need</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Business need</th><th>Recommended approach</th></tr>
+        <tr><td>Automate invoice data entry</td><td>Azure AI Document Intelligence (prebuilt)</td></tr>
+        <tr><td>Draft marketing copy</td><td>Foundation model in Foundry or Microsoft 365 Copilot</td></tr>
+        <tr><td>Enterprise search over docs</td><td>Azure AI Search + grounded model (RAG)</td></tr>
+        <tr><td>Specialized medical summarization</td><td>Fine-tuned model on domain data</td></tr>
+        <tr><td>Image analysis at retail store</td><td>Azure Vision</td></tr>
+        <tr><td>Custom internal chatbot integrated with ERP</td><td>Copilot Studio (low-code) or Foundry agent (code)</td></tr>
+        <tr><td>Real-time content moderation</td><td>Azure AI Content Safety</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>2.9 Integrated Microsoft AI solution — risk mitigation &amp; safety benefits</summary>
+    <div class="content">
+      <p>Choosing integrated Microsoft AI (vs. stitching together disparate services) brings:</p>
+      <ul>
+        <li><strong>Unified identity &amp; permissions</strong> via Entra ID and Microsoft Graph.</li>
+        <li><strong>Built-in Responsible AI controls</strong> — content safety, groundedness checks, evaluations.</li>
+        <li><strong>Compliance coverage</strong> — Microsoft 365 Copilot inherits your tenant compliance (EU data boundary, DLP, sensitivity labels).</li>
+        <li><strong>Operational tooling</strong> — tracing, monitoring, and RBAC built in.</li>
+        <li><strong>Lower total risk</strong> — fewer moving parts and a single accountable vendor.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ========== DOMAIN 3 ========== -->
+<section class="view" id="view-domain3">
+  <h2 class="section-title">Domain 3 · Implementation &amp; Adoption Strategy</h2>
+  <p class="section-sub">20–25% of the exam. Responsible AI, governance, AI councils, adoption teams, AI champions, and licensing models.</p>
+
+  <details class="accordion" open>
+    <summary>3.1 The six Responsible AI principles at Microsoft</summary>
+    <div class="content">
+      <p>Microsoft's Responsible AI Standard rests on six principles — memorize them.</p>
+      <table class="keytable">
+        <tr><th>Principle</th><th>What it means</th></tr>
+        <tr><td><strong>Fairness</strong></td><td>Treat similar people and cases similarly; test to reduce bias.</td></tr>
+        <tr><td><strong>Reliability &amp; safety</strong></td><td>Perform consistently and fail safely, even in unexpected conditions.</td></tr>
+        <tr><td><strong>Privacy &amp; security</strong></td><td>Protect data throughout its lifecycle; least privilege and purpose limitation.</td></tr>
+        <tr><td><strong>Inclusiveness</strong></td><td>Design for diverse needs; test with a broad user base to avoid exclusion.</td></tr>
+        <tr><td><strong>Transparency</strong></td><td>Make the system intelligible — explain how it works and where it may fall short.</td></tr>
+        <tr><td><strong>Accountability</strong></td><td>Assign clear ownership; review decisions; provide remediation paths.</td></tr>
+      </table>
+      <div class="callout tip">Mnemonic: <strong>FRPITA</strong> — Fairness, Reliability, Privacy, Inclusiveness, Transparency, Accountability.</div>
+      <p>Some Microsoft materials also list <em>safety</em> as its own principle (pairing with reliability). The exam may reference all eight qualities — fairness, reliability, safety, privacy, security, inclusiveness, transparency, and accountability.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.2 Governance — building the system</summary>
+    <div class="content">
+      <p>Principles only work when you operationalize them. Build a governance system that translates values into repeatable decisions and accountability across the AI lifecycle.</p>
+      <h4>Three governance approaches</h4>
+      <table class="keytable">
+        <tr><th>Approach</th><th>Strength</th><th>Trade-off</th></tr>
+        <tr><td><strong>Chief Ethics Officer</strong> (centralized)</td><td>Fast decisions, clear accountability, visible leadership.</td><td>Hard to enforce broadly without a team.</td></tr>
+        <tr><td><strong>Ethics Office</strong> (decentralized team)</td><td>Scale — embed across business units with dedicated staff.</td><td>Requires funding and sustained attention.</td></tr>
+        <tr><td><strong>Ethics Committee</strong> (cross-functional)</td><td>Diverse perspectives, external expertise.</td><td>Slower; advisory rather than operational.</td></tr>
+      </table>
+      <div class="callout"><strong>Best practice:</strong> a <strong>hybrid model</strong> — central policy with local operational teams — reporting to the board, with dedicated funding, staffing, and authority.</div>
+      <h4>AI Council</h4>
+      <p>An <strong>AI Council</strong> provides strategy, oversight, and cross-functional alignment. It typically includes legal, security, compliance, IT, HR, data, and business-unit leaders.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.3 Sensitive-use review triggers</summary>
+    <div class="content">
+      <p>Microsoft flags a use case as <strong>"sensitive"</strong> — and subject to extra review — when it falls into any of these categories:</p>
+      <ul>
+        <li><strong>Denial of consequential services</strong> — AI affects access to financial, housing, insurance, education, employment, or healthcare services.</li>
+        <li><strong>Risk of harm</strong> — physical, emotional, or psychological harm to individuals (life-or-death, safety-critical, vulnerable populations, children).</li>
+        <li><strong>Infringement on human rights</strong> — freedom, expression, privacy, assembly (e.g., law enforcement, policing).</li>
+      </ul>
+      <p>Review process has three stages: <strong>identification → assessment → mitigation</strong>. A <em>Responsible AI Champ</em> liaises between employees and central governance.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.4 Organizing for AI success</summary>
+    <div class="content">
+      <h4>Four-step journey to unlock AI value</h4>
+      <ol>
+        <li><strong>Educate and inspire</strong> — executive envisioning sessions; align on 2–3 strategic bets.</li>
+        <li><strong>Assess AI readiness</strong> — Secure AI Readiness Assessment across five dimensions (business strategy, technology strategy, AI experience, org &amp; culture, AI governance &amp; security). Stages: <em>Exploring → Planning → Implementing → Scaling → Realizing</em>.</li>
+        <li><strong>Map your AI journey</strong> — establish a Center of Excellence, governance &amp; security guardrails, data &amp; platform landing zones.</li>
+        <li><strong>Start building the agentic future</strong> — move from pilots to production with repeatable patterns.</li>
+      </ol>
+      <h4>Adoption team</h4>
+      <p>AI transformation is a team sport. Include:</p>
+      <ul>
+        <li>Executive sponsor (owns strategy and budget).</li>
+        <li>AI Governance Lead / Chief AI Officer.</li>
+        <li>IT / Security / Compliance.</li>
+        <li>Business unit leaders who own use cases.</li>
+        <li>Data scientists and developers.</li>
+        <li>Change management and communications.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.5 AI Champions program</summary>
+    <div class="content">
+      <p><strong>AI Champions</strong> are employees across departments who advocate for AI adoption, share best practices, and support peers. They:</p>
+      <ul>
+        <li>Identify high-value use cases in their teams.</li>
+        <li>Share prompt patterns and success stories.</li>
+        <li>Escalate issues to the central adoption team.</li>
+        <li>Model responsible use.</li>
+      </ul>
+      <p>A champions program turns a top-down rollout into grassroots momentum — critical for scale.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.6 Common barriers to adoption</summary>
+    <div class="content">
+      <ul>
+        <li><strong>Unclear business value</strong> — no defined use case or ROI hypothesis.</li>
+        <li><strong>Data readiness gaps</strong> — poor quality, fragmented, or inaccessible data.</li>
+        <li><strong>Skills gap</strong> — teams don't know how to prompt or evaluate outputs.</li>
+        <li><strong>Trust &amp; change resistance</strong> — fear of job loss, skepticism of outputs.</li>
+        <li><strong>Security &amp; compliance concerns</strong> — no clear governance framework.</li>
+        <li><strong>Cost visibility</strong> — no FinOps model for AI workloads.</li>
+        <li><strong>Shadow AI</strong> — employees using unsanctioned tools because IT is too slow.</li>
+      </ul>
+      <h4>Impacts to plan for</h4>
+      <p>Evaluate impacts on <strong>data</strong> (volume, classification, residency), <strong>security</strong> (new threats, access controls), <strong>privacy</strong> (PII handling, consent), and <strong>cost</strong> (tokens, storage, licensing, training).</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.7 Copilot licensing — three options</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Option</th><th>Best for</th><th>Key benefit</th></tr>
+        <tr><td><strong>Included with Microsoft 365 subscription</strong></td><td>Orgs already on eligible M365 plans.</td><td>Simplest; no additional setup.</td></tr>
+        <tr><td><strong>Monthly subscription</strong></td><td>Long-term adoption and steady usage.</td><td>Predictable cost; scales over time.</td></tr>
+        <tr><td><strong>Pay-as-you-go</strong></td><td>Pilots, short-term projects, seasonal workloads.</td><td>Flexible; no long-term commitment.</td></tr>
+      </table>
+      <h4>Underlying Microsoft 365 license tiers</h4>
+      <ul>
+        <li><strong>Microsoft 365 E3</strong> — core productivity, basic security.</li>
+        <li><strong>Microsoft 365 E5</strong> — adds advanced threat protection, analytics, premium compliance.</li>
+        <li><strong>Microsoft 365 Business Standard</strong> — SMB core collaboration.</li>
+        <li><strong>Microsoft 365 Business Premium</strong> — SMB with advanced security and device management.</li>
+      </ul>
+      <p>Copilot availability depends on an eligible underlying Microsoft 365 license. <strong>Copilot Chat</strong> is included with Microsoft 365 Copilot on web and mobile.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.8 Azure AI / Foundry subscription models</summary>
+    <div class="content">
+      <table class="keytable">
+        <tr><th>Model</th><th>Best for</th><th>Trade-off</th></tr>
+        <tr><td><strong>Pay-as-you-go</strong></td><td>Pilots, exploration, variable workloads.</td><td>Costs can spike as usage grows.</td></tr>
+        <tr><td><strong>Pre-paid (committed spend)</strong></td><td>Mature deployments with stable demand.</td><td>Requires accurate forecasting; less flexible.</td></tr>
+      </table>
+      <p>Pair model choice with your <strong>adoption stage</strong>: start pay-as-you-go when exploring; shift to pre-paid once demand is steady for predictability and discounts.</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>3.9 Measuring adoption success</summary>
+    <div class="content">
+      <ul>
+        <li><strong>Productivity metrics</strong> — hours saved per user, time-to-task reduction.</li>
+        <li><strong>Quality metrics</strong> — error rates, CSAT, NPS.</li>
+        <li><strong>Business metrics</strong> — revenue influence, cost-to-serve, cycle time.</li>
+        <li><strong>Usage metrics</strong> — active users, feature adoption, prompt volume.</li>
+        <li><strong>Responsible-AI metrics</strong> — incidents raised, sensitive-use reviews completed, evaluation scores.</li>
+      </ul>
+      <div class="callout"><strong>Key leadership questions</strong> (from Microsoft's adoption guidance): Do we have a unified AI strategy, not just isolated projects? Are we tracking ROI and outcomes, not just spending? Are our CoEs collaborative or siloed? Are we enabling innovation at every level?</div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== FLASHCARDS ========== -->
+<section class="view" id="view-flashcards">
+  <h2 class="section-title">Flashcards</h2>
+  <p class="section-sub">Click the card to flip. Use the filter to focus on one domain.</p>
+
+  <div class="flash-controls">
+    <select class="filter" id="flash-filter" onchange="filterFlashcards()">
+      <option value="all">All domains</option>
+      <option value="1">Domain 1 only</option>
+      <option value="2">Domain 2 only</option>
+      <option value="3">Domain 3 only</option>
+    </select>
+    <button class="btn secondary" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+    <button class="btn secondary" onclick="resetFlashcards()">↺ Reset</button>
+  </div>
+
+  <div class="flash-container">
+    <div class="flash-card" id="flash-card" onclick="flipCard()">
+      <div class="flash-face front">
+        <h3 id="flash-front">Click to start</h3>
+      </div>
+      <div class="flash-face back">
+        <p id="flash-back">Definition will appear here.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flash-meta" id="flash-meta">Card 0 of 0</div>
+  <div class="flash-nav">
+    <button class="btn secondary" onclick="prevCard()">← Previous</button>
+    <button class="btn" onclick="nextCard()">Next →</button>
+  </div>
+</section>
+
+<!-- ========== QUIZ ========== -->
+<section class="view" id="view-quiz">
+  <h2 class="section-title">Practice Quiz</h2>
+  <p class="section-sub">41 questions across all three domains — a mix of multiple-choice and multi-select, just like the real exam. Aim for 80% before exam day.</p>
+
+  <div id="quiz-start" class="card" style="text-align:center; padding:40px;">
+    <h3 style="color:var(--text)">Ready to test yourself?</h3>
+    <p style="color:var(--muted)">41 questions · no time limit · immediate feedback · domain-by-domain score breakdown at the end.</p>
+    <button class="btn" style="margin-top:10px; padding:14px 26px; font-size:1rem;" onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <div id="quiz-body" style="display:none;">
+    <div class="quiz-header">
+      <div style="font-weight:600;"><span id="quiz-current">1</span> / <span id="quiz-total">41</span></div>
+      <div class="progress-bar"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <button class="btn secondary" onclick="quitQuiz()">End quiz</button>
+    </div>
+    <div class="question-card" id="question-card"></div>
+  </div>
+
+  <div id="quiz-result" style="display:none;"></div>
+</section>
+
+<!-- ========== GLOSSARY ========== -->
+<section class="view" id="view-glossary">
+  <h2 class="section-title">Glossary</h2>
+  <p class="section-sub">Every term on the exam, in one searchable list.</p>
+  <input type="text" class="search-box" id="glossary-search" placeholder="Search terms..." oninput="filterGlossary()"/>
+  <div id="glossary-list"></div>
+</section>
+
+</main>
+
+<footer>
+  AB-731 Study Guide · Built from Microsoft Learn materials · Progress saved locally in your browser.
+</footer>
+
+<script>
+  // ========== TAB NAVIGATION ==========
+  function setView(viewId) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('view-' + viewId).classList.add('active');
+    const btn = document.querySelector(`[data-view="${viewId}"]`);
+    if (btn) btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try { localStorage.setItem('ab731_lastView', viewId); } catch(e){}
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+
+  // ========== THEME ==========
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️ Light mode' : '🌙 Dark mode';
+    try { localStorage.setItem('ab731_theme', next); } catch(e){}
+  }
+  try {
+    const savedTheme = localStorage.getItem('ab731_theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.querySelector('.theme-toggle').textContent = '☀️ Light mode';
+    }
+    const lastView = localStorage.getItem('ab731_lastView');
+    if (lastView) setView(lastView);
+  } catch(e){}
+
+  // ========== FLASHCARDS ==========
+  const flashcards = [
+    // Domain 1
+    {d:1, f:"Generative AI", b:"A subset of AI that creates content — text, code, images, or video — powering new productivity and creativity scenarios."},
+    {d:1, f:"Descriptive AI", b:"Capability that describes what happened. Examples: search, classification, summarization."},
+    {d:1, f:"Predictive AI", b:"Capability that anticipates what will happen. Examples: forecasting, anomaly detection, scoring."},
+    {d:1, f:"Prescriptive AI", b:"Capability that recommends what to do next. Examples: recommendations, optimization."},
+    {d:1, f:"Machine learning", b:"Techniques that let systems learn patterns from data and make predictions or classifications. Quality and volume of data drive reliability."},
+    {d:1, f:"Deep learning", b:"A subset of ML using layered neural networks to discover complex patterns in unstructured data. Requires large datasets and significant compute."},
+    {d:1, f:"Data science", b:"Interdisciplinary field that turns data into actionable insight — combines statistics, engineering, and domain expertise."},
+    {d:1, f:"Pretrained model", b:"A model trained on a general, broad dataset. Ready to use out-of-the-box for general tasks."},
+    {d:1, f:"Fine-tuned model", b:"A pretrained model further trained on domain-specific data to improve accuracy for specialized tasks."},
+    {d:1, f:"Foundation model", b:"A large pretrained model adaptable to many downstream tasks — the base for generative AI scenarios."},
+    {d:1, f:"Small Language Model (SLM)", b:"A smaller, faster, cheaper language model — useful for latency-sensitive or cost-sensitive use cases."},
+    {d:1, f:"Token", b:"The chunk of text a model processes (roughly ¾ of an English word). Both input and output tokens cost money; billing is typically per 1,000 tokens."},
+    {d:1, f:"Fabrication (hallucination)", b:"When a generative model produces convincing but incorrect information. Mitigate with grounding, RAG, human review, and citations."},
+    {d:1, f:"Bias in AI", b:"When a system treats similar cases differently, often reflecting bias in the training data. Address with diverse data, fairness testing, and diverse design teams."},
+    {d:1, f:"Prompt", b:"The input text or instruction that guides a generative AI model to produce an output. Prompt quality directly controls output quality."},
+    {d:1, f:"Prompt engineering", b:"The practice of crafting effective prompts. Business users need prompt literacy; developers use advanced techniques to optimize solutions."},
+    {d:1, f:"Few-shot prompting", b:"Including a few examples of desired input/output in the prompt to guide the model's format and style."},
+    {d:1, f:"Chain of thought", b:"Prompting technique that asks the model to reason step-by-step, improving accuracy on complex tasks."},
+    {d:1, f:"Grounding", b:"Connecting AI responses to authoritative data sources — enterprise files, real-time systems — so outputs are verified instead of relying on model memory alone."},
+    {d:1, f:"Retrieval-Augmented Generation (RAG)", b:"Retrieve relevant documents from a knowledge store, then generate the answer using that retrieved context. Improves accuracy, compliance, and freshness."},
+    {d:1, f:"Representative dataset", b:"Training data that reflects the population the model will serve. Avoids exclusion and reduces bias."},
+    {d:1, f:"ML lifecycle", b:"Define problem → Collect/prepare data → Train → Evaluate → Deploy (inferencing) → Monitor and retrain."},
+    {d:1, f:"Inferencing", b:"The step where a trained model is used in a production system to generate predictions or outputs."},
+    {d:1, f:"Prompt injection", b:"An attack where malicious instructions are hidden in user input or retrieved content to hijack the model's behavior."},
+    // Domain 2
+    {d:2, f:"Microsoft Copilot", b:"The umbrella name for AI-powered assistance across Microsoft products (Windows, Edge, GitHub, Microsoft 365). Each combines LLMs with relevant context."},
+    {d:2, f:"Microsoft 365 Copilot", b:"AI embedded in Word, Excel, PowerPoint, Outlook, and Teams. Grounded in your org data via Microsoft Graph; respects existing permissions and compliance."},
+    {d:2, f:"Microsoft 365 Copilot Chat", b:"Conversational web and mobile experience delivering context-aware answers grounded in organizational data. Supports mobile work scenarios."},
+    {d:2, f:"Microsoft Copilot Studio", b:"Low-code platform to build new copilots or extend existing ones with connectors, plugins, and agents — no heavy coding required."},
+    {d:2, f:"Microsoft Graph", b:"The connective data layer linking people, documents, chats, and calendars. Gives Copilot permission-aware context across Microsoft 365."},
+    {d:2, f:"Researcher (Copilot agent)", b:"Agent in Copilot for complex, multi-step research combining web and organizational data. Best for 'what' and 'why' questions needing thorough, cited analysis."},
+    {d:2, f:"Analyst (Copilot agent)", b:"Agent in Copilot for advanced data analysis — runs code, builds charts, reasons over spreadsheets. Best for 'how much' and 'what if' quantitative work."},
+    {d:2, f:"Build vs. Buy vs. Extend", b:"Buy = Microsoft 365 Copilot out of the box. Extend = Copilot Studio, plugins, connectors, agents. Build = Microsoft Foundry for custom AI apps."},
+    {d:2, f:"Microsoft 365 Copilot extensibility framework", b:"The set of patterns for extending Copilot — plugins, connectors, agents, and declarative extensions."},
+    {d:2, f:"Microsoft Foundry", b:"Unified Azure PaaS for enterprise AI: agents, models, and tools with built-in tracing, monitoring, evaluations, unified RBAC, networking, and policies."},
+    {d:2, f:"Foundry Tools", b:"Prebuilt Azure AI services for common tasks (Vision, Language, Document Intelligence, Search, Speech, Content Safety). Fast time-to-value."},
+    {d:2, f:"Azure AI Search", b:"Enterprise search service; the retrieval backbone for RAG applications."},
+    {d:2, f:"Azure Vision (in Foundry Tools)", b:"Prebuilt image analysis service: OCR, object detection, face analysis, image classification."},
+    {d:2, f:"Azure AI Content Safety", b:"Service that detects harmful content in text and images — used as a safety layer for generative AI apps."},
+    {d:2, f:"Integrated Microsoft AI benefits", b:"Unified identity and permissions, built-in Responsible AI controls, tenant compliance coverage, operational tooling, and lower total risk vs. stitching disparate services."},
+    // Domain 3
+    {d:3, f:"Fairness", b:"Responsible AI principle: treat similar people and cases similarly by design; test to reduce bias."},
+    {d:3, f:"Reliability and safety", b:"Responsible AI principle: systems perform consistently and fail safely, even in unexpected conditions."},
+    {d:3, f:"Privacy and security", b:"Responsible AI principle: protect data throughout its lifecycle; design with least privilege and purpose limitation."},
+    {d:3, f:"Inclusiveness", b:"Responsible AI principle: design for diverse needs; test with a broad user base to avoid exclusion."},
+    {d:3, f:"Transparency", b:"Responsible AI principle: make systems intelligible — explain how they work, what they use, where they might fall short."},
+    {d:3, f:"Accountability", b:"Responsible AI principle: assign clear ownership, review decisions, and provide paths for remediation."},
+    {d:3, f:"AI Council", b:"Cross-functional body providing strategy, oversight, and alignment for AI. Typically includes legal, security, compliance, IT, HR, data, and business-unit leaders."},
+    {d:3, f:"Hybrid governance model", b:"Best-practice AI governance: central office sets policy and standards; local teams operationalize in business units. Reports to the board."},
+    {d:3, f:"Responsible AI Champ", b:"Named liaison between employees and central governance teams — drives awareness of policy, routes sensitive-use reports."},
+    {d:3, f:"Sensitive-use review", b:"Escalation triggered when an AI use case involves denial of consequential services, risk of harm, or infringement on human rights. Three stages: identification, assessment, mitigation."},
+    {d:3, f:"AI Champions program", b:"A network of employees across departments who advocate for AI adoption, share best practices, and support peers — drives grassroots adoption."},
+    {d:3, f:"Center of Excellence (CoE)", b:"Organizational hub for AI intake, prioritization, reuse, change management, and skills development."},
+    {d:3, f:"Secure AI Readiness Assessment", b:"Microsoft-led assessment across five dimensions: business strategy, technology strategy, AI experience, org and culture, AI governance and security. Stages: Exploring → Planning → Implementing → Scaling → Realizing."},
+    {d:3, f:"Copilot: Included with M365 subscription", b:"Licensing: Copilot capabilities come with eligible Microsoft 365 plans — simplest deployment."},
+    {d:3, f:"Copilot: Monthly subscription", b:"Licensing: predictable per-user per-month billing. Best for long-term adoption at scale."},
+    {d:3, f:"Copilot: Pay-as-you-go", b:"Licensing: usage-based billing. Best for pilots, seasonal workloads, or project-specific deployments."},
+    {d:3, f:"Azure AI pay-as-you-go", b:"Subscription model: no upfront commitment, billed by actual usage. Best for pilots and variable workloads — monitor closely."},
+    {d:3, f:"Azure AI pre-paid (committed spend)", b:"Subscription model: commit to usage level for discounts and predictable billing. Best for mature deployments with steady demand."},
+    {d:3, f:"Barriers to AI adoption", b:"Common barriers: unclear value, data readiness gaps, skills gap, change resistance, security concerns, cost visibility, shadow AI."},
+    {d:3, f:"Adoption impact areas", b:"Four areas to evaluate: data (volume, classification), security (threats, access), privacy (PII, consent), cost (tokens, licensing, training)."}
+  ];
+  let filteredCards = [...flashcards];
+  let currentCard = 0;
+  let flipped = false;
+
+  function renderCard() {
+    if (filteredCards.length === 0) {
+      document.getElementById('flash-front').textContent = 'No cards in filter';
+      document.getElementById('flash-back').textContent = '—';
+      document.getElementById('flash-meta').textContent = 'Card 0 of 0';
+      return;
+    }
+    const c = filteredCards[currentCard];
+    document.getElementById('flash-front').textContent = c.f;
+    document.getElementById('flash-back').textContent = c.b;
+    document.getElementById('flash-meta').textContent = `Card ${currentCard + 1} of ${filteredCards.length} · Domain ${c.d}`;
+    document.getElementById('flash-card').classList.remove('flipped');
+    flipped = false;
+  }
+  function flipCard() {
+    document.getElementById('flash-card').classList.toggle('flipped');
+    flipped = !flipped;
+  }
+  function nextCard() {
+    if (filteredCards.length === 0) return;
+    currentCard = (currentCard + 1) % filteredCards.length;
+    renderCard();
+  }
+  function prevCard() {
+    if (filteredCards.length === 0) return;
+    currentCard = (currentCard - 1 + filteredCards.length) % filteredCards.length;
+    renderCard();
+  }
+  function filterFlashcards() {
+    const v = document.getElementById('flash-filter').value;
+    filteredCards = v === 'all' ? [...flashcards] : flashcards.filter(c => c.d == v);
+    currentCard = 0;
+    renderCard();
+  }
+  function shuffleFlashcards() {
+    for (let i = filteredCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [filteredCards[i], filteredCards[j]] = [filteredCards[j], filteredCards[i]];
+    }
+    currentCard = 0;
+    renderCard();
+  }
+  function resetFlashcards() {
+    filteredCards = [...flashcards];
+    document.getElementById('flash-filter').value = 'all';
+    currentCard = 0;
+    renderCard();
+  }
+  renderCard();
+
+  // ========== PRACTICE QUIZ ==========
+  const quizQuestions = [
+    // Domain 1
+    { d: 1, type: "single", q: "Which AI capability type is best matched with forecasting next-quarter sales?", opts: ["Descriptive","Predictive","Generative","Prescriptive"], correct: [1], exp: "Predictive AI anticipates future outcomes — forecasting, anomaly detection, scoring." },
+    { d: 1, type: "single", q: "A business wants to auto-draft meeting recaps and follow-up emails. Which AI capability applies?", opts: ["Predictive","Prescriptive","Generative","Descriptive"], correct: [2], exp: "Generative AI creates content — drafts, summaries, emails, images." },
+    { d: 1, type: "single", q: "Which statement about tokens is TRUE?", opts: ["Only output tokens are billed.","Only input tokens are billed.","Both input and output tokens count toward cost.","Tokens only apply to fine-tuned models."], correct: [2], exp: "Both input (prompt + grounding) and output tokens are billed, typically per 1,000." },
+    { d: 1, type: "single", q: "You need the fastest, safest way to automate invoice data extraction. Which approach fits?", opts: ["Train a custom deep-learning model from scratch","Use a prebuilt Foundry Tools service like Document Intelligence","Fine-tune a foundation model","Deploy a small language model on-premises"], correct: [1], exp: "Prebuilt services are fastest time-to-value for well-defined, common tasks like invoice OCR." },
+    { d: 1, type: "single", q: "Fabrication in generative AI is best mitigated by which combination?", opts: ["Larger models and more tokens","Grounding with authoritative data and human review","Turning off content safety filters","Switching from pretrained to pay-as-you-go"], correct: [1], exp: "Grounding/RAG plus human review are the standard mitigations for hallucination." },
+    { d: 1, type: "multi", q: "Which of the following are characteristics of a FINE-TUNED model? (Select 2)", opts: ["Trained on domain-specific data","Identical to out-of-the-box pretrained","Higher accuracy for specialized tasks","Requires no additional data"], correct: [0,2], exp: "Fine-tuned models add domain-specific training on top of a pretrained base, delivering better accuracy on niche tasks." },
+    { d: 1, type: "single", q: "Which statement best describes RAG?", opts: ["A technique that retrains the model on every query","A pattern that retrieves relevant documents, then generates an answer using that context","A subscription model for Azure AI","A UI feature in Copilot Chat"], correct: [1], exp: "RAG = Retrieval-Augmented Generation: retrieve relevant content, then generate grounded answers." },
+    { d: 1, type: "single", q: "A marketing team wants strong results from generative AI tools. Which shared skill matters most for non-technical users?", opts: ["Deep knowledge of transformer internals","Prompt literacy","Python programming","MLOps experience"], correct: [1], exp: "Business users need prompt literacy to get useful outputs from AI tools in everyday workflows." },
+    { d: 1, type: "single", q: "Which scenario is a BETTER fit for classical machine learning than generative AI?", opts: ["Drafting a marketing email","Predicting customer churn from historical data","Summarizing a long document","Creating an image from a description"], correct: [1], exp: "Predicting churn is a classic predictive ML use case; gen-AI is for content creation and summarization." },
+    { d: 1, type: "multi", q: "Which are challenges of generative AI solutions? (Select 3)", opts: ["Fabrication of incorrect info","Bias reflecting training data","Deterministic output for every prompt","Over-reliance without verification","Guaranteed regulatory compliance"], correct: [0,1,3], exp: "Fabrication, bias, and over-reliance are core GenAI challenges. Outputs vary; compliance is not automatic." },
+    { d: 1, type: "single", q: "Which of the following is NOT one of the three security layers called out for AI systems?", opts: ["Application security","Data security","Marketing security","Authentication"], correct: [2], exp: "The three layers are application security, data security, and authentication/identity. 'Marketing security' is not a category." },
+    { d: 1, type: "single", q: "What is the primary purpose of grounding?", opts: ["To reduce compute cost by caching","To connect AI responses to verified, authoritative data","To automatically fine-tune the model","To encrypt model weights"], correct: [1], exp: "Grounding improves accuracy, compliance, and trust by anchoring outputs to verified sources." },
+    { d: 1, type: "single", q: "Which ML lifecycle step comes IMMEDIATELY after evaluating a trained model?", opts: ["Collecting data","Defining the problem","Deploying (inferencing)","Monitoring"], correct: [2], exp: "Define → Collect/prepare → Train → Evaluate → Deploy → Monitor." },
+    { d: 1, type: "single", q: "A leader is concerned AI costs will spike as adoption spreads. Which practice BEST addresses this?", opts: ["Delete historical data","Track token usage and monitor usage patterns","Only use pretrained models","Turn off Content Safety"], correct: [1], exp: "AI workloads scale dynamically; usage monitoring and FinOps practices are key." },
+
+    // Domain 2
+    { d: 2, type: "single", q: "A regional manager needs a quick summary of Q2 performance on their phone before a client call. Which Copilot experience is designed for this?", opts: ["Microsoft 365 Copilot in Word","Microsoft 365 Copilot Chat","Microsoft Foundry","Copilot Studio"], correct: [1], exp: "Copilot Chat is the conversational web/mobile experience for quick, context-aware answers on the go." },
+    { d: 2, type: "single", q: "Which Microsoft product is a low-code platform for building custom copilots?", opts: ["Microsoft Foundry","Microsoft Graph","Microsoft Copilot Studio","Azure AI Search"], correct: [2], exp: "Copilot Studio is the low-code extensibility and customization platform." },
+    { d: 2, type: "single", q: "What role does Microsoft Graph play in Microsoft 365 Copilot?", opts: ["Hosts the foundation model","Provides permission-aware context across files, chats, emails, and calendars","Manages subscription billing","Runs Content Safety checks"], correct: [1], exp: "Microsoft Graph is the data layer that lets Copilot ground responses in organizational context while respecting permissions." },
+    { d: 2, type: "multi", q: "Which apps have embedded Microsoft 365 Copilot experiences? (Select 3)", opts: ["Microsoft Word","Microsoft Excel","Microsoft Outlook","Windows Defender","Azure Portal"], correct: [0,1,2], exp: "Copilot is embedded in Word, Excel, PowerPoint, Outlook, and Teams." },
+    { d: 2, type: "single", q: "Your team needs a custom support agent that integrates with your ERP AND uses a domain-fine-tuned model. Which approach is BEST?", opts: ["Buy — use Microsoft 365 Copilot as-is","Extend — Copilot Studio","Build — Microsoft Foundry","Switch vendors"], correct: [2], exp: "A fine-tuned model plus custom integration = Build in Microsoft Foundry." },
+    { d: 2, type: "single", q: "Which Copilot agent is BEST for multi-step research combining web and organizational data with citations?", opts: ["Analyst","Researcher","Graph","Studio"], correct: [1], exp: "Researcher handles complex research with thorough, cited analyses; Analyst is for quantitative data work." },
+    { d: 2, type: "single", q: "Which Copilot agent is BEST for generating a revenue forecast from a spreadsheet of historical sales?", opts: ["Analyst","Researcher","Chat","Foundry"], correct: [0], exp: "Analyst runs code and analysis on your content — ideal for quantitative 'how much' / 'what if' work." },
+    { d: 2, type: "single", q: "Microsoft Foundry is BEST described as:", opts: ["A Windows app for consumer users","A unified Azure PaaS for enterprise AI agents, models, and tools","A type of Copilot license","A static prompt library"], correct: [1], exp: "Foundry is the unified Azure platform combining agents, models, tools, and governance." },
+    { d: 2, type: "multi", q: "Which are services within Foundry Tools? (Select 3)", opts: ["Azure Vision","Azure AI Search","Azure AI Document Intelligence","Windows Update","Azure Active Directory B2C"], correct: [0,1,2], exp: "Foundry Tools = prebuilt Azure AI services: Vision, Search, Document Intelligence, Language, Speech, Content Safety." },
+    { d: 2, type: "single", q: "A bank wants a RAG-based internal knowledge assistant. Which Azure service is the retrieval backbone?", opts: ["Azure Vision","Azure AI Search","Azure Speech","Microsoft Graph"], correct: [1], exp: "Azure AI Search is the enterprise search / retrieval backbone commonly used for RAG." },
+    { d: 2, type: "single", q: "Which benefit is MOST uniquely provided by choosing an integrated Microsoft AI solution?", opts: ["Lowest-priced compute anywhere","Unified identity, permissions, and tenant compliance inherited by Copilot","Guaranteed zero hallucinations","Free fine-tuning of any model"], correct: [1], exp: "Integrated Microsoft AI inherits tenant identity, permissions, and compliance — a core differentiator." },
+    { d: 2, type: "single", q: "A company already uses Word, Excel, and Teams heavily. What is the FASTEST way to deliver AI-driven productivity for everyday tasks?", opts: ["Build a custom LLM on-prem","Roll out Microsoft 365 Copilot","Hire data scientists","Adopt a competing chatbot"], correct: [1], exp: "Microsoft 365 Copilot delivers AI into the apps already in use — fastest productivity win." },
+    { d: 2, type: "single", q: "Which extensibility option lets a business user add a connector to Copilot WITHOUT writing code?", opts: ["Microsoft Foundry only","Microsoft Copilot Studio","Direct GPT API call","Manual SharePoint indexing"], correct: [1], exp: "Copilot Studio is the low-code way to extend Copilot with connectors, plugins, and custom agents." },
+
+    // Domain 3
+    { d: 3, type: "multi", q: "Which of the following are among Microsoft's Responsible AI principles? (Select 3)", opts: ["Fairness","Speed","Transparency","Accountability","Guaranteed profitability"], correct: [0,2,3], exp: "Six principles: Fairness, Reliability & Safety, Privacy & Security, Inclusiveness, Transparency, Accountability." },
+    { d: 3, type: "single", q: "Which governance approach is generally recommended?", opts: ["Purely centralized via a Chief Ethics Officer","Purely decentralized committees","Hybrid — central policy with local execution","No governance at all"], correct: [2], exp: "A hybrid model — central policy/standards with local operational teams — is Microsoft's recommended best practice." },
+    { d: 3, type: "single", q: "An AI use case may deny an individual access to employment services. What should happen?", opts: ["Ship immediately to validate in production","Escalate as a sensitive-use review","Ignore — not a real concern","Reduce token budget"], correct: [1], exp: "Denial of consequential services is a sensitive-use trigger requiring review." },
+    { d: 3, type: "multi", q: "Which are categories that trigger a sensitive-use review at Microsoft? (Select 3)", opts: ["Denial of consequential services","Risk of harm","Infringement on human rights","Slower response time","Higher compute usage"], correct: [0,1,2], exp: "The three sensitive-use categories: denial of consequential services, risk of harm, infringement on human rights." },
+    { d: 3, type: "single", q: "What is the PRIMARY purpose of an AI Champions program?", opts: ["Audit all outputs","Manage cloud billing","Drive grassroots adoption and peer support","Replace the governance office"], correct: [2], exp: "AI Champions advocate, share practices, and drive adoption at the team level." },
+    { d: 3, type: "single", q: "Which Copilot licensing option is BEST for a pilot with variable usage?", opts: ["Included with Microsoft 365 subscription","Monthly subscription","Pay-as-you-go","Fine-tuned subscription"], correct: [2], exp: "Pay-as-you-go is flexible, no long-term commitment, ideal for pilots and short-term projects." },
+    { d: 3, type: "single", q: "Which Azure AI subscription model BEST supports predictable budgeting at steady enterprise scale?", opts: ["Pay-as-you-go","Pre-paid (committed spend)","Free tier","Per-transaction-only"], correct: [1], exp: "Pre-paid (committed) pricing delivers discounts and predictability for mature deployments." },
+    { d: 3, type: "multi", q: "Which are common barriers to AI adoption? (Select 3)", opts: ["Unclear business value","Skills gap","Perfect data everywhere","Change resistance","Zero security concerns"], correct: [0,1,3], exp: "Common barriers include unclear value, skills gap, and change resistance. The other options would NOT be barriers." },
+    { d: 3, type: "single", q: "Which of the following is a Responsible AI principle focused on helping users understand how a system works?", opts: ["Transparency","Reliability","Inclusiveness","Accountability"], correct: [0], exp: "Transparency = make systems intelligible; explain how they work and where they may fall short." },
+    { d: 3, type: "single", q: "Where does ultimate accountability for AI strategy typically reside?", opts: ["With the data science team alone","With end users","With senior executive leadership","With external auditors"], correct: [2], exp: "Senior executive leadership owns AI strategy, investment decisions, and the culture that enables responsible use." },
+    { d: 3, type: "single", q: "In the Secure AI Readiness Assessment, which is NOT one of the five dimensions?", opts: ["Business strategy","Technology strategy","AI experience","Marketing strategy","Organization and culture"], correct: [3], exp: "The five dimensions: business strategy, technology strategy, AI experience, org & culture, AI governance & security." },
+    { d: 3, type: "single", q: "An AI Council is BEST described as:", opts: ["A team of data scientists","A cross-functional body guiding AI strategy, oversight, and alignment","A licensing category","A type of neural network"], correct: [1], exp: "An AI Council provides strategy, oversight, and cross-functional alignment — legal, security, IT, HR, business, etc." },
+    { d: 3, type: "multi", q: "When evaluating impacts of AI adoption, leaders should consider: (Select 4)", opts: ["Data","Security","Privacy","Cost","Marketing slogans"], correct: [0,1,2,3], exp: "Impacts to plan for: data, security, privacy, and cost." },
+    { d: 3, type: "single", q: "Which Responsible AI principle specifically calls for designing with diverse user needs in mind?", opts: ["Inclusiveness","Reliability","Accountability","Transparency"], correct: [0], exp: "Inclusiveness means designing for diverse needs and testing with a broad user base to avoid exclusion." }
+  ];
+  let quizIndex = 0;
+  let userAnswers = [];
+  let quizActive = false;
+
+  function startQuiz() {
+    quizIndex = 0;
+    userAnswers = new Array(quizQuestions.length).fill(null);
+    quizActive = true;
+    document.getElementById('quiz-start').style.display = 'none';
+    document.getElementById('quiz-body').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('quiz-total').textContent = quizQuestions.length;
+    renderQuestion();
+  }
+  function renderQuestion() {
+    const q = quizQuestions[quizIndex];
+    document.getElementById('quiz-current').textContent = quizIndex + 1;
+    document.getElementById('progress-fill').style.width = ((quizIndex + 1) / quizQuestions.length * 100) + '%';
+
+    const state = userAnswers[quizIndex] || { picks: [], submitted: false };
+    const isSubmitted = state.submitted;
+    const picks = state.picks;
+
+    let html = `
+      <div class="qnum">Question ${quizIndex + 1} · Domain ${q.d}</div>
+      <h3>${q.q}</h3>
+      <div class="qtype">${q.type === 'multi' ? 'Multi-select · choose all that apply' : 'Multiple choice · choose one'}</div>
+      <div class="options">`;
+    q.opts.forEach((opt, i) => {
+      let cls = 'option';
+      let marker = String.fromCharCode(65 + i);
+      if (isSubmitted) {
+        const isCorrect = q.correct.includes(i);
+        const wasSelected = picks.includes(i);
+        if (isCorrect) cls += ' correct';
+        else if (wasSelected) cls += ' incorrect';
+      } else if (picks.includes(i)) {
+        cls += ' selected';
+      }
+      html += `<div class="${cls}" data-i="${i}" onclick="selectOption(${i})">
+        <span class="marker">${marker}</span>
+        <span>${opt}</span>
+      </div>`;
+    });
+    html += `</div>`;
+
+    if (isSubmitted) {
+      const correct = arraysEqual(picks.slice().sort(), q.correct.slice().sort());
+      html += `<div class="explanation ${correct ? 'correct' : 'incorrect'}">
+        <strong>${correct ? '✓ Correct' : '✗ Not quite'}.</strong> ${q.exp}
+      </div>`;
+    }
+
+    html += `<div class="quiz-actions">
+      <button class="btn secondary" onclick="prevQuestion()" ${quizIndex === 0 ? 'disabled style="opacity:0.4"' : ''}>← Previous</button>`;
+    if (!isSubmitted) {
+      const hasSelection = picks.length > 0;
+      html += `<button class="btn" onclick="submitAnswer()" ${!hasSelection ? 'disabled style="opacity:0.4"' : ''}>Submit answer</button>`;
+    } else if (quizIndex < quizQuestions.length - 1) {
+      html += `<button class="btn" onclick="nextQuestion()">Next question →</button>`;
+    } else {
+      html += `<button class="btn accent" onclick="finishQuiz()">See results</button>`;
+    }
+    html += `</div>`;
+
+    document.getElementById('question-card').innerHTML = html;
+  }
+  function selectOption(i) {
+    const q = quizQuestions[quizIndex];
+    let state = userAnswers[quizIndex] || { picks: [], submitted: false };
+    if (state.submitted) return;
+    if (q.type === 'single') {
+      state = { picks: [i], submitted: false };
+    } else {
+      const picks = state.picks.slice();
+      const idx = picks.indexOf(i);
+      if (idx >= 0) picks.splice(idx, 1);
+      else picks.push(i);
+      state = { picks, submitted: false };
+    }
+    userAnswers[quizIndex] = state;
+    renderQuestion();
+  }
+  function submitAnswer() {
+    const state = userAnswers[quizIndex];
+    if (!state || state.picks.length === 0) return;
+    userAnswers[quizIndex] = { picks: state.picks, submitted: true };
+    renderQuestion();
+  }
+  function nextQuestion() {
+    if (quizIndex < quizQuestions.length - 1) { quizIndex++; renderQuestion(); }
+  }
+  function prevQuestion() {
+    if (quizIndex > 0) { quizIndex--; renderQuestion(); }
+  }
+  function quitQuiz() {
+    if (confirm('End the quiz and see current results?')) finishQuiz();
+  }
+  function finishQuiz() {
+    quizActive = false;
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+
+    let totalCorrect = 0;
+    const domainStats = { 1: {c:0,t:0}, 2: {c:0,t:0}, 3: {c:0,t:0} };
+    quizQuestions.forEach((q, i) => {
+      domainStats[q.d].t++;
+      const state = userAnswers[i];
+      if (state && state.picks && arraysEqual(state.picks.slice().sort(), q.correct.slice().sort())) {
+        totalCorrect++;
+        domainStats[q.d].c++;
+      }
+    });
+    const pct = Math.round(totalCorrect / quizQuestions.length * 100);
+    const scaled = Math.round(pct / 100 * 1000);
+    const passed = scaled >= 700;
+
+    const angle = pct * 3.6;
+    const resHtml = `
+      <div class="quiz-result card">
+        <h3>${passed ? '🎉 Passing score!' : '📚 Keep studying'}</h3>
+        <div class="score-circle" style="background: conic-gradient(${passed ? 'var(--good)' : 'var(--warn)'} ${angle}deg, var(--surface-2) ${angle}deg);">
+          <div class="inner">
+            <div class="pct">${pct}%</div>
+            <div class="lab">${scaled} / 1000</div>
+          </div>
+        </div>
+        <p style="margin:10px 0 0; color:var(--muted);">Exam pass mark: 700 / 1000 (70%)</p>
+
+        <div class="domain-breakdown">
+          <h4 style="margin:24px 0 10px;">Domain breakdown</h4>
+          <div class="dbd-row"><span>Domain 1 · Business Value</span><strong>${domainStats[1].c} / ${domainStats[1].t}</strong></div>
+          <div class="dbd-row"><span>Domain 2 · Microsoft AI</span><strong>${domainStats[2].c} / ${domainStats[2].t}</strong></div>
+          <div class="dbd-row"><span>Domain 3 · Adoption</span><strong>${domainStats[3].c} / ${domainStats[3].t}</strong></div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <button class="btn" onclick="startQuiz()">Retake quiz</button>
+          <button class="btn secondary" onclick="reviewAnswers()">Review answers</button>
+        </div>
+      </div>`;
+    document.getElementById('quiz-result').innerHTML = resHtml;
+
+    try {
+      const history = JSON.parse(localStorage.getItem('ab731_scores') || '[]');
+      history.push({ date: new Date().toISOString(), pct, scaled, passed, domain: domainStats });
+      localStorage.setItem('ab731_scores', JSON.stringify(history.slice(-20)));
+    } catch(e){}
+  }
+  function reviewAnswers() {
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('quiz-body').style.display = 'block';
+    quizIndex = 0;
+    renderQuestion();
+  }
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+    return true;
+  }
+
+  // ========== GLOSSARY ==========
+  const glossary = [
+    { term: "AI (Artificial Intelligence)", def: "A set of capabilities that help computers perform tasks once requiring human judgment — language, vision, recommendations, pattern recognition." },
+    { term: "AI Champion", def: "An employee who advocates for AI adoption within their team, shares practices, and bridges to central governance." },
+    { term: "AI Council", def: "Cross-functional leadership body providing AI strategy, oversight, and alignment." },
+    { term: "Accountability (Responsible AI)", def: "Principle: assign clear ownership, review decisions, create paths for remediation." },
+    { term: "Analyst (Copilot)", def: "Copilot agent for advanced data analysis — runs code, builds charts, reasons over spreadsheets." },
+    { term: "Azure AI Search", def: "Enterprise search service; the retrieval backbone for RAG solutions." },
+    { term: "Azure Vision (Foundry Tools)", def: "Prebuilt image analysis: OCR, object detection, face analysis, image classification." },
+    { term: "Bias", def: "Systematic unequal treatment of similar cases; often reflects bias in training data." },
+    { term: "Build vs. Buy vs. Extend", def: "Decision framework: Buy = Copilot as-is; Extend = Copilot Studio/plugins/agents; Build = Foundry custom app." },
+    { term: "Center of Excellence (CoE)", def: "Hub for AI intake, prioritization, reuse, change management, and skills." },
+    { term: "Chain of thought", def: "Prompt technique asking the model to reason step-by-step for complex tasks." },
+    { term: "Classical ML", def: "Machine learning using statistical / algorithmic techniques (not deep neural networks)." },
+    { term: "Content Safety (Azure)", def: "Service that detects harmful text and images, used as a safety layer for gen-AI." },
+    { term: "Copilot (Microsoft)", def: "Umbrella name for AI assistance across Microsoft products." },
+    { term: "Copilot Chat", def: "Conversational web/mobile Copilot experience grounded in organizational data." },
+    { term: "Copilot Studio", def: "Low-code platform to build custom copilots and extend existing ones." },
+    { term: "Data science", def: "Interdisciplinary field turning data into insight via stats, engineering, and domain expertise." },
+    { term: "Deep learning", def: "ML subset using layered neural networks for complex patterns in unstructured data." },
+    { term: "Descriptive AI", def: "AI capability that describes what happened — search, classification, summarization." },
+    { term: "Document Intelligence (Azure)", def: "Prebuilt service to extract structured data from forms and documents." },
+    { term: "Ethics Committee", def: "Cross-functional advisory body (often with external experts) for AI ethics review." },
+    { term: "Ethics Office", def: "Dedicated team that operationalizes AI ethics policies across the organization." },
+    { term: "Extensibility framework (M365 Copilot)", def: "The patterns for extending Copilot: plugins, connectors, agents, declarative extensions." },
+    { term: "Fabrication", def: "Also 'hallucination' — AI producing convincing but incorrect information." },
+    { term: "Fairness (Responsible AI)", def: "Principle: treat similar people/cases similarly by design; test to reduce bias." },
+    { term: "Few-shot prompting", def: "Including examples of input/output in the prompt to guide style and format." },
+    { term: "Fine-tuned model", def: "Pretrained model further trained on domain-specific data for specialized accuracy." },
+    { term: "Foundation model", def: "Large pretrained model adaptable to many downstream tasks; basis for generative scenarios." },
+    { term: "Foundry (Microsoft)", def: "Unified Azure PaaS for enterprise AI: agents, models, tools, governance, RBAC, observability." },
+    { term: "Foundry Tools", def: "Prebuilt Azure AI services — Vision, Language, Document Intelligence, Search, Speech, Content Safety." },
+    { term: "Generative AI", def: "AI subset that creates content — text, code, images, video." },
+    { term: "Governance (AI)", def: "System translating AI principles into repeatable decisions, controls, and accountability." },
+    { term: "Grounding", def: "Connecting AI outputs to authoritative data so responses are verified rather than model-memory only." },
+    { term: "Hallucination", def: "Synonym for fabrication — a model generating plausible but wrong content." },
+    { term: "Hybrid governance", def: "Best-practice AI governance: central policy with local operational teams, reporting to the board." },
+    { term: "Inclusiveness (Responsible AI)", def: "Principle: design for diverse needs; test broadly to avoid exclusion." },
+    { term: "Inferencing", def: "Running a trained model in production to generate outputs on new inputs." },
+    { term: "Integrated Microsoft AI", def: "Using Microsoft's end-to-end AI stack: unified identity, Graph context, compliance, observability." },
+    { term: "Machine learning (ML)", def: "Techniques letting systems learn patterns from data to predict or classify." },
+    { term: "Microsoft 365 Copilot", def: "AI embedded in Word, Excel, PowerPoint, Outlook, Teams; grounded in org data via Graph." },
+    { term: "Microsoft Graph", def: "Data layer linking people, files, chats, calendars; provides permission-aware context." },
+    { term: "ML Lifecycle", def: "Define → Collect/prepare → Train → Evaluate → Deploy → Monitor." },
+    { term: "Pay-as-you-go (Copilot)", def: "Usage-based Copilot licensing; flexible for pilots and short-term projects." },
+    { term: "Pay-as-you-go (Foundry / Azure AI)", def: "Usage-based Azure AI pricing; flexible with no upfront commitment." },
+    { term: "Predictive AI", def: "Capability that anticipates future outcomes — forecasting, scoring, anomaly detection." },
+    { term: "Pre-paid (committed spend)", def: "Azure AI pricing with committed usage for discounts; predictable for mature deployments." },
+    { term: "Prescriptive AI", def: "Capability that recommends action — recommendations, optimization." },
+    { term: "Pretrained model", def: "Model trained on broad data, ready to use out of the box for general tasks." },
+    { term: "Privacy (Responsible AI)", def: "Principle: protect data across its lifecycle; least privilege, purpose limitation." },
+    { term: "Prompt", def: "Input text or instruction that guides a generative AI model's output." },
+    { term: "Prompt engineering", def: "Crafting effective prompts. Business users need prompt literacy; developers use advanced techniques." },
+    { term: "Prompt injection", def: "Attack where hidden instructions in input/retrieved content hijack a model's behavior." },
+    { term: "RAG", def: "Retrieval-Augmented Generation — retrieve relevant docs, then generate an answer using that context." },
+    { term: "Reliability & Safety (Responsible AI)", def: "Principle: systems perform consistently and fail safely, even unexpectedly." },
+    { term: "Representative dataset", def: "Training data reflecting the population the model will serve — reduces bias and exclusion." },
+    { term: "Researcher (Copilot)", def: "Copilot agent for multi-step research combining web and organizational data with citations." },
+    { term: "Responsible AI Champ", def: "Liaison between employees and central governance for responsible-AI questions and escalations." },
+    { term: "Responsible AI Dashboard", def: "Tooling for evaluating bias, fairness, and model behavior during development." },
+    { term: "Right-size model", def: "Principle of matching model size to task — not using the biggest model by default." },
+    { term: "Secure AI", def: "Practice of protecting AI applications, data, and identity across the lifecycle." },
+    { term: "Secure AI Readiness Assessment", def: "Microsoft assessment across 5 dimensions: business strategy, tech strategy, AI experience, org/culture, governance/security." },
+    { term: "Sensitive-use review", def: "Escalation for AI cases involving denial of consequential services, risk of harm, or infringement on rights." },
+    { term: "SLM (Small Language Model)", def: "Smaller, faster, cheaper language model — good for latency- or cost-sensitive use." },
+    { term: "Token", def: "Chunk of text a model processes (~¾ of a word). Input and output both cost money." },
+    { term: "Transparency (Responsible AI)", def: "Principle: make systems intelligible; explain how they work and where they may fall short." }
+  ];
+  function renderGlossary(filter = '') {
+    const f = filter.trim().toLowerCase();
+    const items = glossary.filter(g => !f || g.term.toLowerCase().includes(f) || g.def.toLowerCase().includes(f));
+    const html = items.length === 0
+      ? `<p style="color:var(--muted);">No matches.</p>`
+      : items.map(g => `<div class="glossary-item"><div class="term">${g.term}</div><p class="def">${g.def}</p></div>`).join('');
+    document.getElementById('glossary-list').innerHTML = html;
+  }
+  function filterGlossary() { renderGlossary(document.getElementById('glossary-search').value); }
+  renderGlossary();
+</script>
+
+</body>
+</html>
